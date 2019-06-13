@@ -1,0 +1,49 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build config-service",
+            "type": "shell",
+            "command": "mvn clean install",
+            "options": {
+                "cwd": "config-service"
+            },
+            "group": "build",
+            "problemMatcher": [
+                "$go"
+            ]
+        },
+        {
+            "label": "build reservation-service",
+            "type": "shell",
+            "command": "mvn clean install",
+            "options": {
+                "cwd": "reservation-service"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$go"
+            ]
+        },
+        {
+            "label": "build eureka-service",
+            "type": "shell",
+            "command": "mvn clean install",
+            "options": {
+                "cwd": "eureka-service"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$go"
+            ]
+        }
+    ]
+}

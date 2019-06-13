@@ -1,0 +1,12 @@
+#To list properties for 'reservation-service' stored in git config-repo folder:
+http://localhost:8888/reservation-service/master
+
+#Make sure to include the following in app properties to expose actuator endpoints
+management.endpoints.web.exposure.include=*
+
+#to refresh props
+curl -X POST http://localhost:8085/actuator/refresh
+
+# do not forget to rename default application.properties to bootstrap.properties when using remote config service
+
+#https://www.youtube.com/watch?v=ZyK5QrKCbwM

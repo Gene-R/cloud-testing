@@ -1,0 +1,38 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Debug (Launch) - Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-ConfigServiceApplication<config-service>",
+            "request": "launch",
+            "mainClass": "com.example.configservice.ConfigServiceApplication",
+            "projectName": "config-service"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-ReservationServiceApplication<reservation-service>",
+            "request": "launch",
+            "mainClass": "com.example.reservationservice.ReservationServiceApplication",
+            "projectName": "reservation-service"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-EurekaServiceApplication<eureka-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.example.eurekaservice.EurekaServiceApplication",
+            "projectName": "eureka-service",
+            "args": ""
+        }
+    ]
+}
