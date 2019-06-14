@@ -11,3 +11,4 @@ pom.xml.next
 release.properties
 *.jar
 *.class
+.*.swp
