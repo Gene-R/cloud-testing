@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>log-consolidator</artifactId>
+    <groupId>com.example</groupId>
+    <properties>
+        <kitdistrdir>bin</kitdistrdir>
+    </properties>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+    <name>cloud-testing</name>
+    <modules>
+        <!-- <module>config-service</module> 
+        <module>eureka-service</module> -->
+        <module>reservation-service</module>
+        <module>reservation-client</module>
+    </modules>
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.1</version>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <tasks>
+                               <!-- <copy file="loghub-producer/target/logginghub-producer-${project.version}.jar" todir="target/${kitdistrdir}"/>
+                                <copy file="loghub-consumer/target/logginghub-consumer-${project.version}.jar" todir="target/${kitdistrdir}"/> -->
+                                
+                            </tasks>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

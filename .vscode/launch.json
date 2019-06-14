@@ -33,6 +33,16 @@
             "mainClass": "com.example.eurekaservice.EurekaServiceApplication",
             "projectName": "eureka-service",
             "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ReservationClientApplication<reservation-client>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.example.reservationclient.ReservationClientApplication",
+            "projectName": "reservation-client",
+            "args": ""
         }
     ]
 }

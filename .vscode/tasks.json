@@ -4,7 +4,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build config-service",
+            "label": "1 - build config-service",
             "type": "shell",
             "command": "mvn clean install",
             "options": {
@@ -16,7 +16,22 @@
             ]
         },
         {
-            "label": "build reservation-service",
+            "label": "2 - build eureka-service",
+            "type": "shell",
+            "command": "mvn clean install",
+            "options": {
+                "cwd": "eureka-service"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$go"
+            ]
+        },
+        {
+            "label": "3 - build reservation-service",
             "type": "shell",
             "command": "mvn clean install",
             "options": {
@@ -29,13 +44,13 @@
             "problemMatcher": [
                 "$go"
             ]
-        },
+        },        
         {
-            "label": "build eureka-service",
+            "label": "4 - build reservation-client",
             "type": "shell",
             "command": "mvn clean install",
             "options": {
-                "cwd": "eureka-service"
+                "cwd": "reservation-client"
             },
             "group": {
                 "kind": "build",

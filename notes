@@ -1,5 +1,15 @@
+53:14
 #To list properties for 'reservation-service' stored in git config-repo folder:
 http://localhost:8888/reservation-service/master
+
+Microproxy (Zuul) 
+http://localhost:9999/[reservation-service]/reservations
+reservation-service context in this case ID of the service that was registered 
+in the registry service (Eureka, Zookeeper, etc)
+
+API gateway access endpoint:
+http://localhost:9999/[reservation-service]/reservations/users
+
 
 #Make sure to include the following in app properties to expose actuator endpoints
 management.endpoints.web.exposure.include=*
@@ -9,4 +19,38 @@ curl -X POST http://localhost:8085/actuator/refresh
 
 # do not forget to rename default application.properties to bootstrap.properties when using remote config service
 
+#info
+#https://spring.io/blog/2015/01/20/microservice-registration-and-discovery-with-spring-cloud-and-netflix-s-eureka
 #https://www.youtube.com/watch?v=ZyK5QrKCbwM
+
+reservation-client
+----------------
+Eureka Discovery
+Config Client
+Hystrix - for circuit breaker
+Zuul - for micro proxy
+Stream Redis - for messaging microservices
+Zipkin - for distributed tracesing
+
+There are two types of "edge services":
+1) Micro-proxy - blindly forwards requests behind load balancer
+2) API Gateway - performs API and protocol translations
+
+Edge service should stood up through DNS.
+Smart phone or client devices cannot use Eureka for discovery. They still need to use DNS.
+Devices will send request to edge service, which will mediate the request inside and 
+forward it to the right service(s).
+It is useful patter to let your devices to talk to one external serice only, where edge 
+service will transform device requests as a middle man.
+
+Micro-proxy (e.g. Zuul from Netflix built on RxJava) - typically is good for HTML5 apps where the connection has to stay on ceraint host:port
+All it does just blindly forwards request from the Edge service to the service we have referenced it.
+
+*****************************
+List<String> x = new ArrayList<>(); // Generic type String will be removed at run-time: List x = new ArrayList();
+List<String> x2 = new ArrayList<String>(){/*anonymous sub-class*/}; // now sting is a part of parent-chid hierarchy. 
+//Generic type String will stay at run-time now. . It extends the list of String now, not the list of objects
+// We can capture this generic type information using Type-Token pattern.
+In Spring it is ParametrizedTypeReference<T>
+
+
