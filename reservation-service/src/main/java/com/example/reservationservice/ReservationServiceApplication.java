@@ -34,6 +34,34 @@ import brave.sampler.Sampler;
 @EnableDiscoveryClient
 @SpringBootApplication
 public class ReservationServiceApplication {
+	// Sender sender = OkHttpSender.create("http://localhost:9411/api/v1/spans");
+    // Reporter reporter = AsyncReporter.builder(sender).build();
+
+    // // Now, create a tracer with the service name you want to see in Zipkin.
+    // Tracer tracer = Tracer.newBuilder()
+    //         .localServiceName("my-service")
+    //         .reporter(reporter)
+    //         .build();
+    // Span twoPhase = tracer.newTrace().name("twoPhase").start();
+    // try {
+    //     Span prepare = tracer.newChild(twoPhase.context()).name("prepare").start();
+    //     try {
+    //         System.out.print("prepare");
+    //     } finally {
+    //         prepare.finish();
+    //     }
+    //     Span commit = tracer.newChild(twoPhase.context()).name("commit").start();
+    //     try {
+    //         System.out.print("commit");
+    //     } finally {
+    //         commit.finish();
+    //     }
+    // } finally {
+    //     twoPhase.finish();
+    // }
+
+
+
 
 	@Bean
 	Sampler sampler() {

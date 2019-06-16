@@ -79,13 +79,42 @@ RabitMQ default port is 5671, console management 15672, guest:guest
 Pay attention to submitting your application/json data via RequestBody - not RequestParam
 
 Hystrix-dashboard - heartbeatsa from circuits, you can federate all streams from all circuits (see spring-turbine)
+# manamgement console 
 http://localhost:8010/hystrix
+URL to monitor need to provide a strem of data (ping: )
+http://localhost:9999/actuator/hystrix.stream
 
 
 Distributed tracing is not a simple task for request coming through multiple services. 
 To mitigate that we need to propagade UUID in our request continue to propagafe this UUID across all services.
 spring-cloud-sleuth
 zipkin is a specific implementation of the sleuth
+
+Run zipkin from the docker container on local port 9422 whereas 9411 is internal Docker container port
+docker run -d -p 9422:9411 openzipkin/zipkin
+or via java
+curl -sSL https://zipkin.io/quickstart.sh | bash -s
+java -jar zipkin.jar
+or from guthub
+git clone https://github.com/openzipkin/zipkin
+cd zipkin
+./mvnw -DskipTests --also-make -pl zipkin-server clean install
+java -jar ./zipkin-server/target/zipkin-server-*exec.jar
+
+curl -X POST -d '{"reservationName": "Some name"}' --header "Content-Type: application/json" http://localhost:9999/reservations
+
+@Balanced @Bean for RestTemplate allows to use service-name as the address of the service.
+
+with Eureka disabled:
+myservice.ribbon.eureka.enabled=false
+Use @RibbonClient(name = "myservice") in the code and specify list of services in app .properties file as follows:
+myservice.ribbon.listOfServers=localhost:9000,localhost:9100
+and then use
+restTemplate.getForEntity("http://myservice/api/v1/123", String.class);
+
+Use Nginx as a front end for accesing edge services. Read this
+https://www.nginx.com/blog/service-discovery-in-a-microservices-architecture/
+
 
 
 
