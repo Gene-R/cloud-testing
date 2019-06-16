@@ -1,14 +1,14 @@
-53:14
+
 #To list properties for 'reservation-service' stored in git config-repo folder:
 http://localhost:8888/reservation-service/master
 
 Microproxy (Zuul) 
-http://localhost:9999/[reservation-service]/reservations
+http://localhost:9999/[reservation-service]/reservations - simply proxies to :8085/reservations
 reservation-service context in this case ID of the service that was registered 
 in the registry service (Eureka, Zookeeper, etc)
 
-API gateway access endpoint:
-http://localhost:9999/[reservation-service]/reservations/users
+API gateway access endpoint specified as follows:
+http://localhost:9999/reservations/names
 
 
 #Make sure to include the following in app properties to expose actuator endpoints
@@ -21,6 +21,7 @@ curl -X POST http://localhost:8085/actuator/refresh
 
 #info
 #https://spring.io/blog/2015/01/20/microservice-registration-and-discovery-with-spring-cloud-and-netflix-s-eureka
+#by Josh Long
 #https://www.youtube.com/watch?v=ZyK5QrKCbwM
 
 reservation-client
@@ -52,5 +53,41 @@ List<String> x2 = new ArrayList<String>(){/*anonymous sub-class*/}; // now sting
 //Generic type String will stay at run-time now. . It extends the list of String now, not the list of objects
 // We can capture this generic type information using Type-Token pattern.
 In Spring it is ParametrizedTypeReference<T>
+
+
+Ribbon is the component that does load balancing in the registry service. It is programmable.
+By default it uses round robin.
+It can support session aware connection, sticky session aware, or whatever aware 
+load balancing algorithms.
+
+Client ap with Hystix (Circuit Breakers) will control the route to the service. If load balancer can return a service instance it is goood, but when there are no instances left, istead of failing
+it will trigger circuit breaker fallback function that will return at least something.
+
+ATTENTION: 
+Distributed state synchronization - invites complexity.
+Lazy architecture reaches for something easy such as Distributed Transactions.
+The recomendation is to ignore simplicity at all cost.
+Distributed transacation servers only to slowdown the agreagate system. 
+They also not as guaranted as we migh think.
+
+Instead it is better to use eventual consistency, such as message! If the service is down the message will be buffered and message will be delivered when service is up and running again.
+
+Kafka, Redis, RabitMQ, etc
+
+RabitMQ default port is 5671, console management 15672, guest:guest
+
+Pay attention to submitting your application/json data via RequestBody - not RequestParam
+
+Hystrix-dashboard - heartbeatsa from circuits, you can federate all streams from all circuits (see spring-turbine)
+http://localhost:8010/hystrix
+
+
+Distributed tracing is not a simple task for request coming through multiple services. 
+To mitigate that we need to propagade UUID in our request continue to propagafe this UUID across all services.
+spring-cloud-sleuth
+zipkin is a specific implementation of the sleuth
+
+
+
 
 

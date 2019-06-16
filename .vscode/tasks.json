@@ -4,7 +4,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "1 - build config-service",
+            "label": "1 - config-service",
             "type": "shell",
             "command": "mvn clean install",
             "options": {
@@ -16,7 +16,7 @@
             ]
         },
         {
-            "label": "2 - build eureka-service",
+            "label": "2 - eureka-service",
             "type": "shell",
             "command": "mvn clean install",
             "options": {
@@ -31,7 +31,7 @@
             ]
         },
         {
-            "label": "3 - build reservation-service",
+            "label": "3 - reservation-service",
             "type": "shell",
             "command": "mvn clean install",
             "options": {
@@ -46,11 +46,41 @@
             ]
         },        
         {
-            "label": "4 - build reservation-client",
+            "label": "4 - reservation-client",
             "type": "shell",
             "command": "mvn clean install",
             "options": {
                 "cwd": "reservation-client"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$go"
+            ]
+        },
+        {
+            "label": "5 - hystrix-dashboard",
+            "type": "shell",
+            "command": "mvn clean install",
+            "options": {
+                "cwd": "hystrix-dashboard"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$go"
+            ]
+        },
+        {
+            "label": "6 - zipkin-service",
+            "type": "shell",
+            "command": "mvn clean install",
+            "options": {
+                "cwd": "zipkin-service"
             },
             "group": {
                 "kind": "build",
