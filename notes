@@ -24,6 +24,9 @@ curl -X POST http://localhost:8085/actuator/refresh
 #by Josh Long
 #https://www.youtube.com/watch?v=ZyK5QrKCbwM
 
+#by Will Tran
+https://www.youtube.com/watch?v=USMl2GNg2r0
+
 reservation-client
 ----------------
 Eureka Discovery
@@ -140,5 +143,8 @@ https://docs.cloudfoundry.org/concepts/overview.html
 - distributed sessions
 - cluster state
 
-
+git config credential.helper store
+SAML - Security Assertion Markup Language
+OAuth2 + OpenID connect is good approach
+OAuth2 - delegeted authorization
 
