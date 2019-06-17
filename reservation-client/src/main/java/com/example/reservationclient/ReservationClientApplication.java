@@ -31,7 +31,7 @@ import org.springframework.web.client.RestTemplate;
 
 import brave.sampler.Sampler;
 
-@EnableBinding(Source.class)
+@EnableBinding(Source.class) // for RabbitMQ messaging
 @EnableCircuitBreaker
 @EnableZuulProxy
 @EnableDiscoveryClient

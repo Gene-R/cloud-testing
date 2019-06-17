@@ -103,6 +103,7 @@ java -jar ./zipkin-server/target/zipkin-server-*exec.jar
 
 curl -X POST -d '{"reservationName": "Some name"}' --header "Content-Type: application/json" http://localhost:9999/reservations
 
+# RestTemplate Ribbon aware instance
 @Balanced @Bean for RestTemplate allows to use service-name as the address of the service.
 
 with Eureka disabled:
@@ -112,11 +113,32 @@ myservice.ribbon.listOfServers=localhost:9000,localhost:9100
 and then use
 restTemplate.getForEntity("http://myservice/api/v1/123", String.class);
 
+@FeignClient("bookmark-service")
+interface BookmarkClient {
+
+    @RequestMapping(method = RequestMethod.GET, value = "/{userId}/bookmarks")
+    List<Bookmark> getBookmarks(@PathVariable("userId") String userId);
+}
+
 Use Nginx as a front end for accesing edge services. Read this
 https://www.nginx.com/blog/service-discovery-in-a-microservices-architecture/
 
 
+https://12factor.net/
+https://spring.io/blog/2015/01/13/configuring-it-all-out-or-12-factor-app-style-configuration-with-spring
+https://docs.cloudfoundry.org/concepts/overview.html
 
+- configuration management
+- service discovery
+- circuit breakers
+- intelligent routing
+- micro-proxy
+- control bus
+- one-time tokens
+- global locks
+- leadership election
+- distributed sessions
+- cluster state
 
 
 

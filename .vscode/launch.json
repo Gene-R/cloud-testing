@@ -63,6 +63,16 @@
             "mainClass": "com.example.zipkinservice.ZipkinServiceApplication",
             "projectName": "zipkin-service",
             "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ConsulSericeApplication<consul-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.example.consulserice.ConsulSericeApplication",
+            "projectName": "consul-service",
+            "args": ""
         }
     ]
 }

@@ -89,6 +89,21 @@
             "problemMatcher": [
                 "$go"
             ]
-        }
+        },
+        {
+            "label": "7 - consul-service",
+            "type": "shell",
+            "command": "mvn clean install",
+            "options": {
+                "cwd": "consul-service"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$go"
+            ]
+        }        
     ]
 }
