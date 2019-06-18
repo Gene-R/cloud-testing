@@ -1,0 +1,43 @@
+* Config service:
+http://localhost:8888
+
+* Microservice #1
+http://localhost:0 # random allocated port
+
+* Service discovery - Eureka
+http://localhost:8761
+
+* Edge service / API gateway
+http://localhost:9999
+
+* Zipkin dashboard (local or docker)
+http://localhost:9411
+
+* Hystrix dashboard
+http://localhost:8010
+
+* RabbitMQ web console
+http://localhost:15672
+
+* RabbitMQ service
+http://localhost:5672
+
+* RabbitMQ web console
+http://localhost:15672
+
+################## OTHER #####################
+* Hystrix ping service stream
+http://localhost:<PORT>/actuator/hystrix.stream
+
+* To list configuration propeortues for specified service
+http://localhost:8888/reservation-service/master
+
+
+* To get data from edge service
+http://localhost:9999/reservations/names
+
+* To post data via edge service
+curl -X POST -d '{"reservationName": "New name"}' --header "Content-Type: application/json" http://localhost:9999/reservations
+
+
+

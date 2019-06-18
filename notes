@@ -123,6 +123,8 @@ interface BookmarkClient {
 Use Nginx as a front end for accesing edge services. Read this
 https://www.nginx.com/blog/service-discovery-in-a-microservices-architecture/
 
+# By Will Tran
+https://www.youtube.com/watch?v=USMl2GNg2r0
 
 https://12factor.net/
 https://spring.io/blog/2015/01/13/configuring-it-all-out-or-12-factor-app-style-configuration-with-spring
