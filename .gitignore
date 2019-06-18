@@ -13,3 +13,4 @@ release.properties
 *.class
 .*.swp
 *.log
+*.out
