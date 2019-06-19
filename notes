@@ -143,4 +143,53 @@ https://docs.cloudfoundry.org/concepts/overview.html
 - cluster state
 
 
+*** Spring Cloud Security
+To have proper security use: OAuth2 + OpenID Connect (Authorization + Authentication)
+See: http://oauth.net/articles/authentication
+
+OAuth2 - is Delegated Authorization protocol
+ via token, which cna be obtained from teh following OAuth2 grant types: 
+- Authorization code (from Web applicatioon - this is the most secure)
+- Resource Owner Password Grant (use own login page instead of using login page from authorization server OR for non-browser clients)
+- Implicit grant (typically used with single page javascript app and with really no server backend)
+- Client Credentials (client app or teh machine is operating itself - not on the behalf of the user, E.g. some back-end processes)
+
+OpenID connect is Delegated Authentication protocol (it is not an Authentication itself), which is built on the top of OAuth2
+- Conveys user identity via JWT (Json Web Token)
+- Standard approach for obtaining and veryfing ID tokens for all for all 4 grants specified above under OAuth2
+In short: the user is authorizing specific app to perform specific actions on behalf of this user.
+It can also convey email address, phone, address, etc
+
+To authenticate you can use internal DB, another identity provides (SAML-security assertion markup language, LDAP, etc), 
+multi-factor authentication (e.g. Duo, biometrics, GPS, etc)
+
+How to get tokens (the most secure)?
+"Scopes" are like permissions or roles
+Token says this user can do these particualr things
+
+
+Auth server first provides to one-time access token that is used by Web app to get ID token.
+Then Auth server validates on-time code coming from Web app and returns access token (random string) and ID token (signed JWT - json web token)
+Web app verifies ID token and then starts authentication session saving the the obtained access token.
+When it's over the user will be authenticated both with Auth server and with Web app.
+Web app will submit data (e.g. new order) to REST API service with the access token previously stored in the session. It also presnts in teh authotization header.
+
+UAA server - User Account and Authentication Server
+Spring security OAuth2 is based on uses UUA. 
+Spring Cloud Security = Spring Boot + Spring Security OAuth2
+It produces JWT with scopes (permissions/roles) and identity
+--- https://github.com/william-tran/microservice-security
+
+
+
+
+
+ 
+
+
+
+
+
+
+
 
