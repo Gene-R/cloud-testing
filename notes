@@ -203,4 +203,5 @@ docker run -d --link uaa-db:db -v /tmp/uaa:/uaa:rw hortonworks/cloudbreak-uaa:2.
 docker exec -it 10854a3284db  sh
 
 
+Canary deployment - The idea is to first deploy the change to a small subset of servers, test it, and then roll the change out to the rest of the servers
 
