@@ -24,6 +24,9 @@ curl -X POST http://localhost:8085/actuator/refresh
 #by Josh Long
 #https://www.youtube.com/watch?v=ZyK5QrKCbwM
 
+#by Will Tran
+https://www.youtube.com/watch?v=USMl2GNg2r0
+
 reservation-client
 ----------------
 Eureka Discovery
@@ -142,7 +145,15 @@ https://docs.cloudfoundry.org/concepts/overview.html
 - distributed sessions
 - cluster state
 
+git config credential.helper store
+SAML - Security Assertion Markup Language
+OAuth2 + OpenID connect is good approach
+OAuth2 - delegeted authorization
 
+
+wget http://www-us.apache.org/dist/tomcat/tomcat-9/v9.0.11/bin/apache-tomcat-9.0.11.tar.gz
+
+<<<<<<< HEAD
 *** Spring Cloud Security
 To have proper security use: OAuth2 + OpenID Connect (Authorization + Authentication)
 See: http://oauth.net/articles/authentication
@@ -180,16 +191,16 @@ Spring Cloud Security = Spring Boot + Spring Security OAuth2
 It produces JWT with scopes (permissions/roles) and identity
 --- https://github.com/william-tran/microservice-security
 
-
-
-
-
  
 
 
 
-
-
+UAA server docker image
+docker run --name uaa -e UAA_DB_HOST=databasehost -e UAA_DB_PASSWORD=strongpassword -d bhits/uaa:latest
+docker run --name uaa <configuration> -d bhits/uaa:latest
+docker run -d --link uaa-db:db -v /tmp/uaa:/uaa:rw hortonworks/cloudbreak-uaa:2.7.1
+# open shall with running container
+docker exec -it 10854a3284db  sh
 
 
 
