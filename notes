@@ -148,3 +148,8 @@ SAML - Security Assertion Markup Language
 OAuth2 + OpenID connect is good approach
 OAuth2 - delegeted authorization
 
+
+wget http://www-us.apache.org/dist/tomcat/tomcat-9/v9.0.11/bin/apache-tomcat-9.0.11.tar.gz
+
+https://engineeringportal.nielsen.com/docs/Browser_SDK_API_Reference
+
