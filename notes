@@ -205,3 +205,44 @@ docker exec -it 10854a3284db  sh
 
 Canary deployment - The idea is to first deploy the change to a small subset of servers, test it, and then roll the change out to the rest of the servers
 
+
+https://kubernetes.io/docs/setup/learning-environment/minikube/
+
+# start 
+minikube start
+# now we can interact via kubectl
+
+# deploy our image
+kubectl run hello-minikube --image=k8s.gcr.io/echoserver:1.10 --port=8080
+
+
+#expose as a service
+kubectl expose deployment hello-minikube --type=NodePort
+
+# check that pod is up and running
+kubectl get pod
+
+# get URL of the exposed service
+minikube service hello-minikube --url
+
+
+#-------------------------------
+# to delete our service
+kubectl delete services hello-minikube
+
+# to delete deployment
+kubectl delete deployment hello-minikube
+
+# stop minikube cluster
+minikube stop
+
+# delete inikube cluster
+minikube delete
+
+#-------------------------------
+# access minikube shell
+minukube ssh
+or 
+ssh "IPaddress of minikube" -l docker (pass: tcuser)
+
+
