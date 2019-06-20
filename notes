@@ -207,9 +207,13 @@ Canary deployment - The idea is to first deploy the change to a small subset of 
 
 
 https://kubernetes.io/docs/setup/learning-environment/minikube/
-
-# start 
+#-------------------------------
+# To create and start minikube
 minikube start
+on Windows via hyperv
+minikube start -p minikube2 --vm-driver=hyperv
+minikube start -p minikube3 --vm-driver hyperv --hyperv-virtual-switch "External Switch"
+
 # now we can interact via kubectl
 
 # deploy our image
@@ -245,4 +249,9 @@ minukube ssh
 or 
 ssh "IPaddress of minikube" -l docker (pass: tcuser)
 
+#####################################
+docker build -t myapp:v1 .
+docker image rm -f 6b89ca376865
 
+
+To reduce Tomcat startup in the docker time use property pointing to "/dev/urandom" as a source of entropy. 
