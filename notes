@@ -214,6 +214,8 @@ on Windows via hyperv
 minikube start -p minikube2 --vm-driver=hyperv
 minikube start -p minikube3 --vm-driver hyperv --hyperv-virtual-switch "External Switch"
 
+minikube start --kubernetes-version v1.8.0 --vm-driver="hyperv" --memory 1024 --cpus 1 --disk-size 2g  --hyperv-virtual-switch="NATSwitch" --v=7 --alsologtostderr
+
 # now we can interact via kubectl
 
 # deploy our image
@@ -255,3 +257,8 @@ docker image rm -f 6b89ca376865
 
 
 To reduce Tomcat startup in the docker time use property pointing to "/dev/urandom" as a source of entropy. 
+
+
+DDD - Domain Driven Design
+OSGi - Open Service Gateway Initiative
+Serverless architecture: AWS lambda, Azure functions
