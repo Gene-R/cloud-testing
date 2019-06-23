@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-cfg-srv 
+spec:
+  containers:
+  - name: private-reg-container
+    image: localhost:5000/my-cfg-srv:latest
+  imagePullSecrets:
+  - name: regcred
+

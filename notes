@@ -206,20 +206,107 @@ docker exec -it 10854a3284db  sh
 Canary deployment - The idea is to first deploy the change to a small subset of servers, test it, and then roll the change out to the rest of the servers
 
 
+
+
+
+####################################################
+####################################################
+####################################################
+
+# create docker locla provate registry
+docker run -d -p 5000:5000 --restart=always --name registry registry:2
+
+docker pull localhost:5000/my-cfg-srv
+
+# tag image
+docker tag config-service:1.0 localhost:5000/my-cfg-srv
+
+# push image to provate local repository
+docker push localhost:5000/my-cfg-srv
+docker pull localhost:5000/my-cfg-srv
+
+
+#Create deployment using local registry with tagged (latest) image
+!!!
+kubectl create deployment my-cfg-srv --image=localhost:5000/my-cfg-srv:latest 
+kubectl create deployment hello-node --image=gcr.io/hello-minikube-zero-install/hello-node
+
+---
+READ: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+docker login http://localhost:5000 -u docker -p tcuser
+
+cat ~/.docker/config.json
+
+kubectl create secret generic regcred --from-file=.dockerconfigjson=/home/gene/.docker/config.json --type=kubernetes.io/dockerconfigjson
+
+#check created secret
+kubectl get secret regcred --output=yaml
+kubectl get secret regcred --output="jsonpath={.data.\.dockerconfigjson}" | base64 --decode
+
+
+#download Pod config file:
+wget -O my-private-reg-pod.yaml https://k8s.io/examples/pods/private-reg-pod.yaml
+---cut here --
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-cfg-srv
+spec:
+  containers:
+  - name: private-reg-container
+    image: localhost:5000/my-cfg-srv:latest
+  imagePullSecrets:
+  - name: regcred
+---cut here --
+
+#create Pod
+kubectl apply -f my-private-reg-pod.yaml
+
+# list pod
+kubectl get pod my-cfg-srv
+
+curl http://localhost:5000/v2/_catalog
+
+
+kubectl run 241d260ab36d --image=localhost:5000/my-cfg-srv --port=8888 --image-pull-policy=Never 
+when 241d260ab36d is container ID
+
+---
+
+
+### Pull an Image from a Private Registry
+https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+
+###### AAAAA
+kubectl run my-cfg-srv --image=localhost:5000/my-cfg-srv --port=8888 --image-pull-policy=Never
+
+
 https://kubernetes.io/docs/setup/learning-environment/minikube/
 #-------------------------------
 # To create and start minikube
-minikube start
+on linux there must be VirtualBox installed prior running minikube iso image
+minikube start -p minikube # to start first cluster
+minikube start -p minikube-node # to start second cluster
+
 on Windows via hyperv
 minikube start -p minikube2 --vm-driver=hyperv
 minikube start -p minikube3 --vm-driver hyperv --hyperv-virtual-switch "External Switch"
-
 minikube start --kubernetes-version v1.8.0 --vm-driver="hyperv" --memory 1024 --cpus 1 --disk-size 2g  --hyperv-virtual-switch="NATSwitch" --v=7 --alsologtostderr
 
-# now we can interact via kubectl
+
+
+
+# create deployment that manages Pod
+kubectl create deployment config-service --image=config-service:1.0
+
+
+kubectl get deployments
+kubectl get pods
+kubectl get events
+
 
 # deploy our image
-kubectl run hello-minikube --image=k8s.gcr.io/echoserver:1.10 --port=8080
+kubectl run config-service --image=config-service:1.0 --port=8888 --image-pull-policy=Never
 
 
 #expose as a service
@@ -229,15 +316,15 @@ kubectl expose deployment hello-minikube --type=NodePort
 kubectl get pod
 
 # get URL of the exposed service
-minikube service hello-minikube --url
+minikube service config-service --url
 
 
 #-------------------------------
 # to delete our service
-kubectl delete services hello-minikube
+kubectl delete services config-service
 
 # to delete deployment
-kubectl delete deployment hello-minikube
+kubectl delete deployment config-service
 
 # stop minikube cluster
 minikube stop
