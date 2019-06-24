@@ -209,6 +209,8 @@ Canary deployment - The idea is to first deploy the change to a small subset of 
 
 
 
+
+
 ####################################################
 ####################################################
 ####################################################
@@ -349,3 +351,94 @@ To reduce Tomcat startup in the docker time use property pointing to "/dev/urand
 DDD - Domain Driven Design
 OSGi - Open Service Gateway Initiative
 Serverless architecture: AWS lambda, Azure functions
+
+
+MQTT - Message Queuing Telemetry Transport, enables resource-constrained IoT devices to send, or publish, information about a given 
+topic to a server that functions as an MQTT message broker. MQTT protocol is a good choice for wireless networks that experience varying 
+levels of latency due to occasional bandwidth constraints or unreliable connections
+
+AWS IoT Core -  filter, transform and act upon device data on the fly.
+AWS Lambda -
+Amazon Kinesis - similar to Kafka streaming engine, Google cloud Pub/Sub
+Amazon S3 -  Simple Storage Service is a storage for the Internet. Provides simply interface to store any data at any time, from anywhere on the web
+Amazon SageMaker -  is a cloud machine learning platform. 
+Amazon DynamoDB -  enables developers to create, train, and deploy machine learning models in the cloud. SageMaker also enables developers to deploy ML models on embedded systems and edge-devices.
+Amazon CloudWatch -
+AWS CloudTrail -
+Amazon QuickSight -
+Amazon Elasticsearch Service -
+Amazon Rekognition Video - is a deep learning powered video analysis service that detects activities; understands the movement of people in frame; and recognizes people, objects, celebrities, and inappropriate content from your video stored in Amazon S3
+
+ML algorithms:
+ 1) Supervised learning: Y = f(X)
+    1.1) Clasification: to predict the outcome of given sample data in the form of category (to label red/black/yellow, sick/healthy, male/female, etc).
+    1.2) Regression: to predict the outcome of given sample data in the form of real values (teh amount of rainfall, the heigh, weight or age of the person, etc)
+ 2) Unsupervised learning - only processes input variables (X), no corresponding output based on X.
+   2.1) Assosiation: to discover the probability of co-occurance of items in a collection of data - market basket analysis (e.g. customer purchaces bread - it is 80% he will purchase eggs).
+   2.2) CLustering: try to group similar samples from different clusters within the same cluster to keep alike data together.
+   2.3) Dimensionallity Reduction: e.g. performs data transformation from a high-dimensional space to a low-dimensional space (using feature extraction and feature selection methods)
+ 3) Reinforcement learning: usually learn optimal actions through trial and error. E.g. robot learns how to avoid collision by bumping to obstacles.
+
+
+DWM - Data Warehousing and Mining
+CART - Classification and Regression Trees is implementaion of the Decision Tree (e.g. male (married vs. unmarried) 
+over/under 30 y.o. will most likely buy sports car or minivan).
+
+Naive Bayes - to calculate the probability that an event will occur. Data: Weather statuses(sunny, rainy, overcast => play or no-play) 
+
+PCA - Principal Component Analysis 
+
+
+Ensembling - combining the results of multiple learners (classifiers) for improved results, by voting or averaging. 
+Voting is used during classification and averaging is used during regression. 
+The idea is that ensembles of learners perform better than single learners.
+
+ANN - Artificial Neural Networks
+
+KDD - Knowlege Discovery in Databases - a form of data mining
+
+Machine learning (ML) is the scientific study of algorithms and statistical models that computer systems use in order to perform a specific task effectively 
+without using explicit instructions, relying on patterns and inference instead. It is seen as a subset of artificial intelligence. 
+Machine learning algorithms build a mathematical model based on sample data, known as "training data", in order to make predictions 
+or decisions without being explicitly programmed to perform the task. Machine learning algorithms are used in a wide variety of applications, 
+such as email filtering, and computer vision, where it is infeasible to develop an algorithm of specific instructions for performing the task. 
+Machine learning is closely related to computational statistics, which focuses on making predictions using computers. The study of mathematical 
+optimization delivers methods, theory and application domains to the field of machine learning. Data mining is a field of study within machine learning, 
+and focuses on exploratory data analysis through unsupervised learning. In its application across business problems, machine learning is also referred to as predictive analytics.
+
+
+Data mining is the process of discovering patterns in large data sets involving methods at the intersection of machine learning, statistics, and database systems. 
+Data mining is an interdisciplinary subfield of computer science and statistics with an overall goal to extract information from a data set and transform the information 
+into a comprehensible structure for further use. Data mining is the analysis step of the "knowledge discovery in databases" process, or KDD. 
+Aside from the raw analysis step, it also involves database and data management aspects, data pre-processing, model and inference considerations, interestingness metrics, 
+complexity considerations, post-processing of discovered structures, visualization, and online updating. 
+
+The difference between data analysis and data mining:
+-----------------------------------------------------
+Data Analysis - is used to test models and hypotheses on the dataset, e.g., analyzing the effectiveness of a marketing campaign, regardless of the amount of data; 
+
+Data Mining - uses machine-learning and statistical models to uncover clandestine or hidden patterns in a large volume of data.
+                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+  
+On-Premise Private Cloud, if built must provide scalability, adaptability, extensibility, and manageability.
+- Config Service
+- Service Registry/Discovery (Eureka or Zookeeper)
+- Circuit Breaker Dashboard
+- Distributed messaging system (e.g. RabbitMQ)
+- Ditributed database
+- Containerization (like kubernetes with docker)
+Infrastructure for maintaning Regions, Availability zones, datacenters, racks, machines
+
+
+Hikari is a JDBC DataSource implementation that provides a connection pooling mechanism. 
+
+
+EUREKA : for service registration and discovery
+ZUUL : for proxy gateway and
+RIBBON : for load balancing
+
+
+
+
