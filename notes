@@ -368,6 +368,8 @@ AWS CloudTrail -
 Amazon QuickSight -
 Amazon Elasticsearch Service -
 Amazon Rekognition Video - is a deep learning powered video analysis service that detects activities; understands the movement of people in frame; and recognizes people, objects, celebrities, and inappropriate content from your video stored in Amazon S3
+DynamoDB is the NoSQL solution for AWS
+
 
 ML algorithms:
  1) Supervised learning: Y = f(X)
